@@ -18,9 +18,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'backend',
+    'users',
     # additional functionality
     'rest_framework',
     'rest_framework.authtoken',
+    'phonenumber_field',
+    
     
 ]
 
@@ -54,20 +57,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'event_manager.wsgi.application'
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'POSTGRES',
-        'USER': 'POSTGRES',
-        'PASSWORD': 'POSTGRES',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'POSTGRES',
+#         'USER': 'POSTGRES',
+#         'PASSWORD': 'POSTGRES',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

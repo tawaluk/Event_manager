@@ -5,4 +5,4 @@ RUN pip install -r requirements.txt --no-cache-dir
 COPY . /app/
 RUN ls -al
 
-CMD python /app/event_manager/manage.py migrate && python /app/event_manager/manage.py runserver 0:8000
+CMD python /app/event_manager/manage.py makemigrations && python /app/event_manager/manage.py migrate && python /app/event_manager/manage.py runserver 0:8000
