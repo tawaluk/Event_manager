@@ -113,3 +113,5 @@ REST_FRAMEWORK = {
         'backend.permissions.CustomPermission',
     ],
 }
+
+AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
