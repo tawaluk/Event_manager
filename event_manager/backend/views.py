@@ -1,12 +1,26 @@
-from rest_framework import filters, generics
-from .models import Event
-from .serializers import EventSerializer
+from rest_framework import viewsets, filters
+from rest_framework.pagination import LimitOffsetPagination
+from django_filters import rest_framework as django_filters
 
 
-class EventListView(generics.ListAPIView):
+from .models import Event, Organization
+from .serializers import OrganizationSerializer, EventSerializer
+from .filters import EventFilter
+
+
+class EventViewSet(viewsets.ModelViewSet):
+
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ['date']
+    filter_backends = [django_filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_class = EventFilter
     search_fields = ['title']
-    # pagination_class = LimitOffsetPagination
+    ordering_fields = ['date']
+    pagination_class = LimitOffsetPagination
+
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+
+    queryset = Organization.objects.all()
+    serializer_class = OrganizationSerializer

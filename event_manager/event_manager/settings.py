@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'phonenumber_field',
+    'django_filters',
     
     
 ]
@@ -109,9 +110,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'backend.permissions.CustomPermission',
-    ],
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'backend.permissions.CustomPermission',
+#    ],
 }
 
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
