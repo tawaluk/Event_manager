@@ -9,7 +9,7 @@ from .models import Event, Organization
 class EventAdmin(ModelAdmin):
     """Отображение модели ивентов в админке."""
 
-    list_display = ("title", "description", "get_organizations", "date")
+    list_display = ("title", "description", "get_organizations", "date", "image")
     search_fields = ("title", "date")
     list_filter = ("title", "date")
 
@@ -26,4 +26,3 @@ class OrganizationAdmin(ModelAdmin):
     list_display = ("title", "description", "address", "postcode")
     search_fields = ("title", "address")
     list_filter = ("title", "address")
-

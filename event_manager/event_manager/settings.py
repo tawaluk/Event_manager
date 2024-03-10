@@ -1,4 +1,8 @@
+import os
+
 from pathlib import Path
+
+from celery import Celery
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -104,6 +108,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
@@ -116,3 +123,13 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
+
+app = Celery('event_manager')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()
+
+CELERY_BROKER_URL = "redis://0.0.0.0:6379"
+CELERY_RESULT_BACKEND = "redis://0.0.0.0:6379"
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

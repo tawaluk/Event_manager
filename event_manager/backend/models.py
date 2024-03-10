@@ -19,4 +19,5 @@ class Event(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     organizations = models.ManyToManyField(Organization)
+    image = models.ImageField(blank=True, upload_to="images/")
     date = models.DateField()
