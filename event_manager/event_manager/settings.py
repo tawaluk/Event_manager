@@ -28,8 +28,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'phonenumber_field',
     'django_filters',
-    
-    
 ]
 
 MIDDLEWARE = [
@@ -66,20 +64,14 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'POSTGRES',
+        'USER': 'POSTGRES',
+        'PASSWORD': 'POSTGRES',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'POSTGRES',
-#         'USER': 'POSTGRES',
-#         'PASSWORD': 'POSTGRES',
-#         'HOST': 'db',
-#         'PORT': 5432,
-#     }
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -117,9 +109,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-#    'DEFAULT_PERMISSION_CLASSES': [
-#        'backend.permissions.CustomPermission',
-#    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'backend.permissions.CustomPermission',
+    ],
 }
 
 AUTHENTICATION_BACKENDS = ['users.backend.EmailBackend']
@@ -130,6 +122,6 @@ app.autodiscover_tasks()
 
 CELERY_BROKER_URL = "redis://0.0.0.0:6379"
 CELERY_RESULT_BACKEND = "redis://0.0.0.0:6379"
-CELERY_ACCEPT_CONTENT = ['json']
+CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

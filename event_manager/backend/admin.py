@@ -7,14 +7,13 @@ from .models import Event, Organization
 
 @register(Event)
 class EventAdmin(ModelAdmin):
-    """Отображение модели ивентов в админке."""
 
     list_display = ("title", "description", "get_organizations", "date", "image")
     search_fields = ("title", "date")
     list_filter = ("title", "date")
 
     def get_organizations(self, obj):
-        """Отображение названий организваций в ивентах. Для удобства."""
+        """Отображение названий организаций в ивентах. Для удобства."""
 
         return ", ".join([org.title for org in obj.organizations.all()])
     get_organizations.short_description = "Organizations"

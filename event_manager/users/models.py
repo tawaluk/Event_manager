@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from backend.models import Organization
 
+
 class CustomUser(AbstractUser):
 
     email = models.EmailField(unique=True)

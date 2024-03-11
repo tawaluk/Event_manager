@@ -3,7 +3,7 @@ from django.contrib.admin import register
 from django.contrib.auth.admin import Group, UserAdmin
 
 from .models import CustomUser
-from backend.models import Organization
+
 
 admin.site.unregister(Group)  # Убираю видимость админки групп
 
