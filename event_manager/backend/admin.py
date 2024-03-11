@@ -1,6 +1,4 @@
-from django.contrib import admin
 from django.contrib.admin import register, ModelAdmin
-from django.contrib.auth.admin import UserAdmin
 
 from .models import Event, Organization
 
@@ -8,7 +6,9 @@ from .models import Event, Organization
 @register(Event)
 class EventAdmin(ModelAdmin):
 
-    list_display = ("title", "description", "get_organizations", "date", "image")
+    list_display = (
+        "title", "description", "get_organizations", "date", "image"
+        )
     search_fields = ("title", "date")
     list_filter = ("title", "date")
 

@@ -8,6 +8,7 @@ from .models import Event
 def create_event(event_data):
     Event.objects.create(**event_data)
 
+
 @shared_task
 def create_event_with_delay(event_data):
     create_event.apply_async(
